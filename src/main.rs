@@ -1,9 +1,7 @@
-#![allow(unused_imports)]
-
 use std::time::Duration;
 
 use crossterm::{
-    event::{self, Event},
+    event,
     terminal::{
         enable_raw_mode,
         disable_raw_mode,
@@ -11,7 +9,6 @@ use crossterm::{
     style::Stylize,
     tty::IsTty,
 };
-use clap::{App, Arg, AppSettings};
 
 
 fn main() {
