@@ -1,0 +1,10 @@
+[package]
+name = "crossterm-events-tester"
+description = "a gizmo to test polling times in crossterm events"
+version = "1.0.0"
+authors = ["0x5c <dev@0x5c.io>"]
+edition = "2018"
+
+[dependencies]
+crossterm = "0.20"
+clap = "2.33"
