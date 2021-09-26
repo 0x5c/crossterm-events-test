@@ -10,6 +10,7 @@ use crossterm::{
     tty::IsTty,
 };
 
+const CTRL_C: event::Event = event::Event::Key(event::KeyEvent{code: event::KeyCode::Char('c'), modifiers: event::KeyModifiers::CONTROL}); 
 
 fn main() {
     let stdout = std::io::stdout();
@@ -69,7 +70,6 @@ fn main() {
 
 
 fn loop_de_loop(wait_dur: Duration, poll_dur: Duration) -> crossterm::Result<()> {
-    let ctrl_c = event::Event::Key(event::KeyEvent::new(event::KeyCode::Char('c'), event::KeyModifiers::CONTROL)); 
     enable_raw_mode()?;
     loop {
         println!("{}\r", "Waiting period".dark_green());
@@ -80,7 +80,7 @@ fn loop_de_loop(wait_dur: Duration, poll_dur: Duration) -> crossterm::Result<()>
                 let event = event::read()?;
                 let fmt_event = format!("{:?}", event).blue();
                 println!("{} {}\r", "Got Event:".dark_cyan(), fmt_event);
-                if event == ctrl_c {
+                if event == CTRL_C {
                     println!("{}\r", "Ctrl+C means we say byebye!".dark_cyan());
                     break;
                 }
